@@ -28,15 +28,33 @@ module Devise
       
       module ClassMethods
         
-        # Generate
+        # Generate autosignin tokens unless already exists and save the records.
         def ensure_all_autosignin_tokens
           all.collect &:ensure_autosignin_token!
+        end
+
+        # Generate autosignin tokens and save the records.
+        def reset_all_autosignin_tokens
+          all.collect &:reset_autosignin_token
         end
 
         # generation random autosignin token
         def autosignin_token
           ::Devise.friendly_token
         end
+
+
+        # Authenticate a user based on authentication token.
+        def authenticate_with_autosignin_token(token)
+          find_for_token_authentication(token)
+        end
+
+        protected
+
+        def find_for_autosignin_token_authentication(token)
+          find(:first, :conditions => { :autosignin_token => token})
+        end
+      
 
         
       end
