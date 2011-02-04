@@ -71,7 +71,7 @@ module Devise
 
         # generation random autosignin token
         def autosignin_token
-          ::Devise.friendly_token
+          ActiveSupport::SecureRandom.hex(16)
         end
 
         # Authenticate a user based on authentication token.
