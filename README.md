@@ -12,15 +12,15 @@ It requires  Devise 1.0 and ONLY works with Rails 2.
 Installation
 -----------
 
-1. Add :autosigninable to your Devise modules in model, for example:
+* Add :autosigninable to your Devise modules in model, for example:
 
     devise :registerable, :authenticatable, :recoverable, :rememberable, :trackable, :validatable, :lockable, :autosigninable
 
-2. Add devise_autosigninable plugin to your Rails app:
+* Add devise_autosigninable plugin to your Rails app:
 
     script/plugin install https://github.com/aderyabin/devise_autosigninable
 
-3. Generate migration for autosigninable. It creates neccessary fields and fill already existed records.
+* Generate migration for autosigninable. It creates neccessary fields and fill already existed records.
 
     script/generate devise_autosigninable MODEL
 
