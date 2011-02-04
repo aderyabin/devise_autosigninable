@@ -39,7 +39,7 @@ and
     link_to_autosignin(object, title, options)
 
 
-By default Devise Autosigninable uses '/:object_id/autosignin/:autosignin_token' route. For example, for User model:
+By default Devise Autosigninable uses `'/:object_id/autosignin/:autosignin_token'` route. For example, for User model:
 
     /users/1/autosignin/c6718d1a2ebea0f716cb62ad2375af64
 
