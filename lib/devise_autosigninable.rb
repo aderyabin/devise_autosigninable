@@ -6,8 +6,8 @@ require 'devise_autosigninable/view_helpers'
 require 'devise_autosigninable/strategy'
 
 module Devise
-  mattr_accessor :autosignin_path
-   @@autosignin_path = '/:object_id/autosignin/:autosignin_token'
+  mattr_accessor :autosignin_url
+   @@autosignin_url = '/:object_id/autosignin/:autosignin_token'
 end
 
 
