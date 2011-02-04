@@ -3,11 +3,9 @@ require 'devise/strategies/base'
 
 
 module Devise #:nodoc:
-  module Autosigninable #:nodoc:
     module Strategies #:nodoc:
 
-      #
-      class Autosigninable < ::Devise::Strategies::Base
+      class Autosigninable < Base
 
         def valid?
          valid_controller? && valid_params? && mapping.to.respond_to?('authenticate_with_autosignin_token')
@@ -30,9 +28,8 @@ module Devise #:nodoc:
           def valid_params?
             params[:object_id].present? && params[:autosignin_token].present?
           end
-      end
     end
   end
 end
 
-Warden::Strategies.add(:autosigninable, Devise::Autosigninable::Strategies::Autosigninable)
+Warden::Strategies.add(:autosigninable, Devise::Strategies::Autosigninable)

@@ -1,6 +1,8 @@
 module Devise
   module Models
     module Autosigninable
+      include Devise::Models::Lockable
+
       def self.included(base)
         base.extend ClassMethods
 
@@ -31,7 +33,30 @@ module Devise
       def ensure_autosignin_token!
         self.reset_autosignin_token! if self.autosignin_token.blank?
       end
-      
+
+      # Verifies whether an +incoming_autosignin_token
+      # is the user authentication token.
+      def valid_autosignin_token?(incoming_autosignin_token)
+        incoming_autosignin_token == self.autosignin_token
+      end
+
+      # Checks if a resource is valid upon authentication.
+      # for verifying whether an user is allowed to sign in or not. If the user
+      # is locked, it should never be allowed.
+      def valid_for_autosignin_token_authentication?(attributes)
+        if (result = valid_autosignin_token?(attributes[:autosignin_token])) && self.class.devise_modules.include?(:lockable)
+          self.failed_attempts = 0 if self.class.devise_modules.include?(:lockable)
+        else
+          if self.class.devise_modules.include?(:lockable)
+            self.failed_attempts += 1
+            lock if failed_attempts > self.class.maximum_attempts
+          end
+        end
+        save(false) if changed?
+        result
+      end
+
+
       module ClassMethods
         
         # Generate autosignin tokens unless already exists and save the records.
@@ -51,14 +76,12 @@ module Devise
 
         # Authenticate a user based on authentication token.
         def authenticate_with_autosignin_token(attributes={})
-          find_for_autosignin_token_authentication(attributes[:object_id], attributes[:autosignin_token])
-        end
-
-        protected
-
-        # Find user by id and autosignin token
-        def find_for_autosignin_token_authentication(object_id, token)
-          find_by_id_and_autosignin_token(object_id, token)
+          resource = find_by_id(attributes[:object_id])
+          if resource.try(:valid_for_autosignin_token_authentication?, attributes)
+            resource
+          else
+            nil
+          end
         end
       end
     end

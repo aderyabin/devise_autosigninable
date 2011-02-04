@@ -1,8 +1,9 @@
 class AutosigninController < ApplicationController
   include Devise::Controllers::InternalHelpers
   include Devise::Autosigninable::Helpers
+  
   def create
-    if resource = authenticate(resource_name)
+    if resource = (authenticate(resource_name) rescue nil)
       set_flash_message :notice, :signed_in
     else
       set_now_flash_message :alert, (warden.message || :invalid)
