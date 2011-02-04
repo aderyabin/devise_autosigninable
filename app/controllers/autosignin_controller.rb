@@ -3,6 +3,7 @@ class AutosigninController < ApplicationController
   include Devise::Autosigninable::Helpers
   
   def create
+    sign_out(resource_name)
     if resource = authenticate(resource_name)
       set_flash_message :notice, :signed_in
     else
