@@ -5,7 +5,7 @@ ActionController::Routing::RouteSet::Mapper.class_eval do
     # Setup routes for +AutosigninSessionsController+.
     #
     def autosigninable(routes, mapping)
-      routes.autosignin ::Devise.autosignin_path, :controller => 'sessions', :action => 'autosignin',  :conditions => { :method => :get }
+      routes.autosignin ::Devise.autosignin_path, :controller => 'autosignin', :action => 'create',  :conditions => { :method => :get }
     end
 
 end
