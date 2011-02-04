@@ -14,15 +14,15 @@ Installation
 
 * Add :autosigninable to your Devise modules in model, for example:
 
-    devise :registerable, :authenticatable, :recoverable, :rememberable, :trackable, :validatable, :lockable, :autosigninable
+    `devise :registerable, :authenticatable, :recoverable, :rememberable, :trackable, :validatable, :lockable, :autosigninable`
 
 * Add devise_autosigninable plugin to your Rails app:
 
-    script/plugin install https://github.com/aderyabin/devise_autosigninable
+    `script/plugin install https://github.com/aderyabin/devise_autosigninable`
 
 * Generate migration for autosigninable. It creates neccessary fields and fill already existed records.
 
-    script/generate devise_autosigninable MODEL
+    `script/generate devise_autosigninable MODEL`
 
 Replace MODEL by the class name you want to add devise, like User, Admin, etc
 
