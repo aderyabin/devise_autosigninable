@@ -22,6 +22,7 @@ module Devise #:nodoc:
       # or root url
       def sign_in_and_redirect_to_url(resource = nil, url=nil)
         if resource
+          sign_out(resource)
           sign_in(resource)
           redirect_to url || after_sign_in_path_for(resource)
         else
