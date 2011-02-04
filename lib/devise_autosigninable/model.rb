@@ -45,18 +45,15 @@ module Devise
 
 
         # Authenticate a user based on authentication token.
-        def authenticate_with_autosignin_token(token)
-          find_for_token_authentication(token)
+        def authenticate_with_autosignin_token(object_id, token)
+          find_for_autosignin_token_authentication(object_id, token)
         end
 
         protected
 
-        def find_for_autosignin_token_authentication(token)
-          find(:first, :conditions => { :autosignin_token => token})
+        def find_for_autosignin_token_authentication(object_id, token)
+          find_by_id_and_autosignin_token(object_id, token)
         end
-      
-
-        
       end
     end
   end
