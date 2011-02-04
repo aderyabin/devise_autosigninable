@@ -3,7 +3,13 @@ module Devise
     module Autosigninable
       def self.included(base)
         base.extend ClassMethods
+
+        base.class_eval do
+          before_create :reset_autosignin_token
+        end
       end
+
+      
 
       # Generate new autosignin token
       def reset_autosignin_token
@@ -43,14 +49,14 @@ module Devise
           ::Devise.friendly_token
         end
 
-
         # Authenticate a user based on authentication token.
-        def authenticate_with_autosignin_token(object_id, token)
-          find_for_autosignin_token_authentication(object_id, token)
+        def authenticate_with_autosignin_token(attributes={})
+          find_for_autosignin_token_authentication(attributes[:object_id], attributes[:autosignin_token])
         end
 
         protected
 
+        # Find user by id and autosignin token
         def find_for_autosignin_token_authentication(object_id, token)
           find_by_id_and_autosignin_token(object_id, token)
         end
