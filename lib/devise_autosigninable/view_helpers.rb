@@ -9,10 +9,16 @@ module Devise #:nodoc:
       # Create the link to autosignin url based on resource with given link_text
       # example: link_to_autosignin(user, user.email)
       def link_to_autosignin(resource, link_text, options={})
-        link_to link_text, send("#{resource.class.to_s.downcase}_autosignin_url",
+        link_to link_text, auto_signin_url_for(resouce) , options
+      end
+
+
+       # return autosignin url for given resource 
+      def auto_signin_url_for(resource)
+        send("#{resource.class.to_s.downcase}_autosignin_url",
             {:object_id => resource.id,
             :autosignin_token => resource.autosignin_token}
-          ) , options
+          )
       end
 
       # Sign in and tries to redirect first to given url and
