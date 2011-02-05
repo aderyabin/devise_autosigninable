@@ -19,6 +19,4 @@ class UserHelperTest < ActionView::TestCase
   end
 
 
-
-
 end
