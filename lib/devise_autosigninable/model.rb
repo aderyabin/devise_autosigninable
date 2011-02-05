@@ -66,7 +66,7 @@ module Devise
 
         # Generate autosignin tokens and save the records.
         def reset_all_autosignin_tokens
-          all.collect &:reset_autosignin_token
+          all.collect &:reset_autosignin_token!
         end
 
         # generation random autosignin token
