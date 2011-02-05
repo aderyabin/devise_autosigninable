@@ -43,6 +43,7 @@ By default Devise Autosigninable uses `'/:object_id/autosignin/:autosignin_token
 
     /users/1/autosignin/c6718d1a2ebea0f716cb62ad2375af64
 
+Also route understand optional parameter "return_to" to redirect after sign in.
 
 Tests
 -----------
