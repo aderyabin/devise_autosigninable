@@ -44,4 +44,9 @@ By default Devise Autosigninable uses `'/:object_id/autosignin/:autosignin_token
     /users/1/autosignin/c6718d1a2ebea0f716cb62ad2375af64
 
 
+Tests
+-----------
+All test cases are stored in test/rails_app/tests
+
+
 [1]:http://github.com/plataformatec/devise
