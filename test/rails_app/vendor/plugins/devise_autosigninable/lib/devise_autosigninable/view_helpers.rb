@@ -9,7 +9,7 @@ module Devise #:nodoc:
       # Create the link to autosignin url based on resource with given link_text
       # example: link_to_autosignin(user, user.email)
       def link_to_autosignin(resource, link_text, options={})
-        link_to link_text, auto_signin_url_for(resouce) , options
+        link_to link_text, auto_signin_url_for(resource) , options
       end
 
 
