@@ -1,6 +1,9 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  fixtures :users
+
+
   def setup
     @user_with_autosignin_token = users(:user1)
     @user_without_autosignin_token = users(:user2)
@@ -74,12 +77,12 @@ class UserTest < ActiveSupport::TestCase
     assert_equal true, @user_with_autosignin_token.valid_for_autosignin_token_authentication?({:autosignin_token =>'01869a0f18c27087626d3ca2c4cb2d71'})
   end
 
-  test 'valid_for_autosignin_token_authentication? should reset failed_attempts if params are corrent' do
+  test 'if lockable enabled valid_for_autosignin_token_authentication? should reset failed_attempts if params are corrent' do
     @user_with_autosignin_token.valid_for_autosignin_token_authentication?({:autosignin_token =>'01869a0f18c27087626d3ca2c4cb2d71'})
     assert_equal 0,  @user_with_autosignin_token.failed_attempts
   end
 
-  test 'valid_for_autosignin_token_authentication? should return false and increase failed_attempts if params are incorrent' do
+  test 'if lockable enabled disable valid_for_autosignin_token_authentication? should return false and increase failed_attempts if params are incorrent' do
     old_failed = @user_with_autosignin_token.failed_attempts
     assert_equal false, @user_with_autosignin_token.valid_for_autosignin_token_authentication?({:autosignin_token =>'0186918c27087626d3ca2c4cb2d71'})
     assert_equal old_failed+1, @user_with_autosignin_token.failed_attempts

@@ -3,6 +3,7 @@ require 'action_view/test_case'
 
 class UserHelperTest < ActionView::TestCase
   include Devise::Autosigninable::Helpers
+  fixtures :users
 
   def setup
     @user = users(:user1)
