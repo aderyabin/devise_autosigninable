@@ -1,0 +1,8 @@
+Description:
+     Generates for the model with the given NAME a migration file
+
+Example:
+    ./script/generate devise_autosigninable Thing
+
+    This will create:
+        what/will/it/create
