@@ -93,6 +93,11 @@ class UserTest < ActiveSupport::TestCase
     assert_equal User.autosignin_token.length, 32
   end
 
+  test "autosignin_token should generate new values" do
+    assert_not_equal User.autosignin_token, User.autosignin_token
+  end
+
+
   test 'ensure_all_autosignin_tokens should update only blank' do
     old_token1 = User.find(1).autosignin_token
     old_token2 = User.find(2).autosignin_token

@@ -12,3 +12,12 @@ user2:
   autosignin_token: 
   encrypted_password: test
   password_salt: test
+
+
+user3:
+  id: 3
+  email: test3@example.com
+  autosignin_token: 2c605390cbdfb4fa6bf8ab4ac300ccbf
+  encrypted_password: test
+  password_salt: test
+  failed_attempts: 10
