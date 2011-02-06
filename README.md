@@ -1,10 +1,13 @@
 Devise Autosigninable
 =============
 Devise Autosigninable adds functionality of auto sign in to your [devise][1] app.
-Devise Autosigninable compatibile with all default Devise modules(especially with Lockable).
-If Locable module is activated Devise Autosigninable uses Locable functionality for failed_attempts.
+Devise Autosigninable is compatibile with all default Devise modules.
+If Lockable module is activated Devise Autosigninable uses Lockable functionality for failed attempts.
+If user is blocked or not confirmed he can't sign in with Devise Autosigninable too.
 
-Devise Autosigninable signs in a user based on an autosignin token (random hash with length 32) 
+Devise Autosigninable signs in a user based on an autosignin token (random hash with length 32).
+If signed in user try to sign in with Devise Autosigninable he will be sign out firstly and than go to sign in.
+So if token is incorrect user will be signed out anyway.
 
 It requires  Devise 1.0 and ONLY works with Rails 2.
 
