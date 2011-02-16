@@ -1,0 +1,4 @@
+ru:
+  devise:
+    autosignin:
+      signed_in: 'Вы вошли'
