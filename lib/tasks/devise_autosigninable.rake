@@ -1,13 +1,13 @@
 namespace :devise do
   namespace :autosigninable do
     desc 'Generate missed autosignin tokens, by default for User model'
-    task :ensure_all_autosignin_tokens, :model do |t, args|
+    task :ensure, :model do |t, args|
       args.with_defaults(:model => "User")
       args.model.camelize.constantize.ensure_all_autosignin_tokens
     end
 
     desc 'Reset all autosignin tokens, by default for User model'
-    task :reset_all_autosignin_tokens, :model do |t, args|
+    task :reset, :model do |t, args|
       args.with_defaults(:model => "User")
       args.model.camelize.constantize.reset_all_autosignin_tokens
     end

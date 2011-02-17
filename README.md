@@ -29,7 +29,9 @@ Installation
 
 Replace MODEL by the class name you want to add devise, like User, Admin, etc
 
+* Run rake command for generation autosignin tokens
 
+   `rake devise:autosigninable:ensure[MODEL]`
 
 Route and Helpers
 -----------
