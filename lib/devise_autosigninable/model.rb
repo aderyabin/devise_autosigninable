@@ -11,7 +11,6 @@ module Devise
         end
       end
 
-      
 
       # Generate new autosignin token
       def reset_autosignin_token
@@ -58,15 +57,25 @@ module Devise
 
 
       module ClassMethods
-        
+
         # Generate autosignin tokens unless already exists and save the records.
-        def ensure_all_autosignin_tokens
-          all.collect &:ensure_autosignin_token!
+        def ensure_all_autosignin_tokens(batch_size=500)
+          i = 1
+          find_in_batches(:batch_size =>batch_size, :conditions=>{:autosignin_token => nil}) do |group|
+            group.each { |user| user.ensure_autosignin_token! }
+            puts "Updated users: #{batch_size*i} from #{user_count}"
+            i += 1
+          end
         end
 
         # Generate autosignin tokens and save the records.
         def reset_all_autosignin_tokens
-          all.collect &:reset_autosignin_token!
+          i = 1
+          find_in_batches(:batch_size =>batch_size, :conditions=>{:autosignin_token => nil}) do |group|
+            group.each { |user| user.reset_autosignin_token! }
+            puts "Reseted users: #{batch_size*i} from #{user_count}"
+            i += 1
+          end
         end
 
         # generation random autosignin token
