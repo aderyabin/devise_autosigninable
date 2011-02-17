@@ -23,7 +23,7 @@ module Devise
       end
 
       def valid_params?
-        params[:object_id].present? && params[:autosignin_token].present?
+        params[:autosignin_token].present?
       end
 
     end

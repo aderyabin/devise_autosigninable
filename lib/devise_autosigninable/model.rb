@@ -85,7 +85,7 @@ module Devise
 
         # Authenticate a user based on authentication token.
         def authenticate_with_autosignin_token(attributes={})
-          resource = find_by_id(attributes[:object_id])
+          resource = find_by_id(attributes["#{self.to_s.downcase}_id".to_sym])
           if resource.try(:valid_for_autosignin_token_authentication?, attributes)
             resource
           else
