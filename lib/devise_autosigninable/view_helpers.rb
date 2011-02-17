@@ -15,8 +15,9 @@ module Devise #:nodoc:
 
        # return autosignin url for given resource 
       def auto_signin_url_for(resource)
-        send("#{resource.class.to_s.downcase}_autosignin_url",
-            {:object_id => resource.id,
+        resource_name = resource.class.to_s.downcase
+        send("#{resource_name}_autosignin_url",
+            {:"#{resource_name}_id" => resource.id,
             :autosignin_token => resource.autosignin_token}
           )
       end

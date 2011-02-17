@@ -5,12 +5,6 @@ require 'devise_autosigninable/schema'
 require 'devise_autosigninable/view_helpers'
 require 'devise_autosigninable/strategy'
 
-module Devise
-  mattr_accessor :autosignin_url
-   @@autosignin_url = '/:object_id/autosignin/:autosignin_token'
-end
-
-
 Devise.add_module :autosigninable,
   :strategy => true,
   :controller => :autosignin,
