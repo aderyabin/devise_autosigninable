@@ -48,7 +48,7 @@ module Devise
         else
           if self.class.devise_modules.include?(:lockable)
             self.failed_attempts += 1
-            lock if failed_attempts > self.class.maximum_attempts
+            lock_access! if failed_attempts > self.class.maximum_attempts
           end
         end
         save(false) if changed?
