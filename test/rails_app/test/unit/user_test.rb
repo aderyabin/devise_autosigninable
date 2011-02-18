@@ -122,8 +122,8 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'authenticate_with_autosignin_token should return object by params else nil' do
-    assert_equal User.authenticate_with_autosignin_token({:object_id=>1, :autosignin_token=>'01869a0f18c27087626d3ca2c4cb2d71'}), User.find(1)
-    assert_nil User.authenticate_with_autosignin_token({:object_id=>2, :autosignin_token=>'01869a0f18c27087626d3ca2c4cb2d71'}), User.find(1)
+    assert_equal User.authenticate_with_autosignin_token({:user_id=>1, :autosignin_token=>'01869a0f18c27087626d3ca2c4cb2d71'}), User.find(1)
+    assert_nil User.authenticate_with_autosignin_token({:user_id=>2, :autosignin_token=>'01869a0f18c27087626d3ca2c4cb2d711212'})
   end
 
 

@@ -4,6 +4,9 @@ class AutosigninController < ApplicationController
   
   def create
     sign_out(resource_name)
+    puts resource_name.inspect
+    puts current_user.inspect
+    puts '-'*80
     if resource = authenticate(resource_name)
       set_flash_message :notice, :signed_in
     else

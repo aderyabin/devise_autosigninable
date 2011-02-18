@@ -60,18 +60,20 @@ module Devise
 
         # Generate autosignin tokens unless already exists and save the records.
         def ensure_all_autosignin_tokens(batch_size=500)
+          user_count = count( :conditions=>{:autosignin_token => nil})
           i = 1
           find_in_batches(:batch_size =>batch_size, :conditions=>{:autosignin_token => nil}) do |group|
             group.each { |user| user.ensure_autosignin_token! }
-            puts "Updated users: #{batch_size*i} from #{user_count}"
+#            puts "Updated users: #{batch_size*i} from #{user_count}"
             i += 1
           end
         end
 
         # Generate autosignin tokens and save the records.
-        def reset_all_autosignin_tokens
+        def reset_all_autosignin_tokens(batch_size=500)
+          user_count = count
           i = 1
-          find_in_batches(:batch_size =>batch_size, :conditions=>{:autosignin_token => nil}) do |group|
+          find_in_batches(:batch_size =>batch_size) do |group|
             group.each { |user| user.reset_autosignin_token! }
             puts "Reseted users: #{batch_size*i} from #{user_count}"
             i += 1
