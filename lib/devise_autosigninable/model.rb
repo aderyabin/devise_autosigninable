@@ -82,7 +82,7 @@ module Devise
 
         # generation random autosignin token
         def autosignin_token
-          ActiveSupport::SecureRandom.hex(16)
+          Digest::SHA1.hexdigest(ActiveSupport::SecureRandom.hex(16))
         end
 
         # Authenticate a user based on authentication token.

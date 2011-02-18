@@ -92,8 +92,8 @@ class UserTest < ActiveSupport::TestCase
     assert_equal User.autosignin_token.class, String
   end
 
-  test "class method length of generated signin hash should be 32" do
-    assert_equal User.autosignin_token.length, 32
+  test "class method length of generated signin hash should be 40" do
+    assert_equal User.autosignin_token.length, 40
   end
 
   test "autosignin_token should generate new values" do
