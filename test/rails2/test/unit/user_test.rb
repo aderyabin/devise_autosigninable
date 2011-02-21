@@ -125,5 +125,13 @@ class UserTest < ActiveSupport::TestCase
   end
 
 
+  test 'if autosigninable? is false then token should be nil' do
+    user = users(:user6)
+    assert_equal user.autosigninable?, false
+    user.reset_autosignin_token!
+    assert_nil user.autosignin_token
+  end
+
+
   
 end

@@ -11,10 +11,13 @@ module Devise
         end
       end
 
+      def autosigninable?
+        true
+      end
 
       # Generate new autosignin token
       def reset_autosignin_token
-        self.autosignin_token = self.class.autosignin_token
+        self.autosignin_token  = self.autosigninable? ? self.class.autosignin_token : nil
       end
 
       # Generate new autosignin token and save the record.

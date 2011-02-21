@@ -44,3 +44,13 @@ confirmed_user2:
   failed_attempts: 0
   confirmation_sent_at: 2010-01-01 12:12:10
   confirmed_at: 2010-01-01 12:12:12
+
+user6:
+  id: 6
+  email: test6@example.com
+  autosignin_token: 31869a0f18c5708723153ca2c4cb2d71
+  encrypted_password: test
+  password_salt: test
+  failed_attempts: 0
+  confirmation_sent_at: 2010-01-01 12:12:10
+  confirmed_at: 2010-01-01 12:12:12
