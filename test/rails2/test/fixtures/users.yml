@@ -1,0 +1,46 @@
+user1:
+  id: 1
+  email: test1@example.com
+  autosignin_token: 01869a0f18c27087626d3ca2c4cb2d71
+  encrypted_password: test
+  password_salt: test
+  failed_attempts: 10
+  confirmed_at: nil
+  confirmation_token: lARueDVwzqh7LuTB9DFZ
+
+user2:
+  id: 2
+  email: test2@example.com
+  autosignin_token: 
+  encrypted_password: test
+  password_salt: test
+
+
+user3:
+  id: 3
+  email: test3@example.com
+  autosignin_token: 2c605390cbdfb4fa6bf8ab4ac300ccbf
+  encrypted_password: test
+  password_salt: test
+  failed_attempts: 10
+  
+
+confirmed_user:
+  id: 4
+  email: test4@example.com
+  autosignin_token: 01869a0f18c2708723153ca2c4cb2d71
+  encrypted_password: test
+  password_salt: test
+  failed_attempts: 0
+  confirmation_sent_at: 2010-01-01 12:12:10
+  confirmed_at: 2010-01-01 12:12:12
+
+confirmed_user2:
+  id: 5
+  email: test5@example.com
+  autosignin_token: 31869a0f18c2708723153ca2c4cb2d71
+  encrypted_password: test
+  password_salt: test
+  failed_attempts: 0
+  confirmation_sent_at: 2010-01-01 12:12:10
+  confirmed_at: 2010-01-01 12:12:12

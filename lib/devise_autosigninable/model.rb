@@ -1,7 +1,7 @@
 module Devise
   module Models
     module Autosigninable
-      include Devise::Models::Lockable
+#      include Devise::Models::Lockable
 
       def self.included(base)
         base.extend ClassMethods

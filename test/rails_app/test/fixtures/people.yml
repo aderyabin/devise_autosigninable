@@ -1,6 +1,0 @@
-person1:
-  id: 1
-  email: test1@example.com
-  autosignin_token: 01869a0f18c27087626d3ca2c4cb2d71
-  encrypted_password: test
-  password_salt: test
