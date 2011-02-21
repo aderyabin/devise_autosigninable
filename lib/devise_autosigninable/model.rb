@@ -57,6 +57,8 @@ module Devise
 
 
       module ClassMethods
+        
+        RETRY_COUNT = 20
 
         # Generate autosignin tokens unless already exists and save the records.
         def ensure_all_autosignin_tokens(batch_size=500)
@@ -81,8 +83,12 @@ module Devise
         end
 
         # generation random autosignin token
-        def autosignin_token
-          Digest::SHA1.hexdigest("--#{Time.now.utc}--#{rand}--")
+        def autosignin_token(field = 'autosignin_token')
+          RETRY_COUNT.times do
+            token = Digest::SHA1.hexdigest("--#{Time.now.utc}--#{rand}--")
+            return token unless exists? field => token
+          end
+          raise Exception.new("Couldn't generate #{self.class}:#{field} for #{RETRY_COUNT} times")
         end
 
         # Authenticate a user based on authentication token.
