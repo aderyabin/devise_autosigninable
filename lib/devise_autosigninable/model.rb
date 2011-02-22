@@ -8,11 +8,20 @@ module Devise
 
         base.class_eval do
           before_create :reset_autosignin_token
+
+#         indicator to expire autosignin token
+        mattr_accessor :autosignin_expire
+        @@autosignin_expire = false
+          
         end
       end
 
       def autosigninable?
         true
+      end
+
+      def autosigninable_ready?
+        !self.autosignin_token.blank?
       end
 
       # Generate new autosignin token
@@ -28,12 +37,12 @@ module Devise
 
       # Generate autosignin token unless already exists.
       def ensure_autosignin_token
-        self.reset_autosignin_token if self.autosignin_token.blank?
+        self.reset_autosignin_token unless self.autosigninable_ready?
       end
 
       # Generate autosignin token unless already exists and save the record.
       def ensure_autosignin_token!
-        self.reset_autosignin_token! if self.autosignin_token.blank?
+        self.reset_autosignin_token! unless self.autosigninable_ready?
       end
 
       # Verifies whether an +incoming_autosignin_token
@@ -54,6 +63,7 @@ module Devise
             lock_access! if failed_attempts > self.class.maximum_attempts
           end
         end
+        reset_autosignin_token! if self.class.autosignin_expire
         save(false) if changed?
         result
       end
@@ -106,4 +116,5 @@ module Devise
       end
     end
   end
+
 end

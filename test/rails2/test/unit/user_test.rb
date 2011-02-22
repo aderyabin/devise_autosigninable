@@ -132,6 +132,16 @@ class UserTest < ActiveSupport::TestCase
     assert_nil user.autosignin_token
   end
 
+  test 'autosignin expires should be disabled and dont change token' do
+    assert_equal User.autosignin_expire, false
+    old_token = @user_with_autosignin_token.autosignin_token
+    User.authenticate_with_autosignin_token({:user_id=>@user_with_autosignin_token.id, :autosignin_token=>@user_with_autosignin_token.autosignin_token})
+    assert_equal old_token, @user_with_autosignin_token.autosignin_token
+  end
 
+  test 'if token exists than model ready for autosignin, else not' do
+    assert_equal @user_with_autosignin_token.autosigninable_ready?, true
+    assert_equal  @user_without_autosignin_token.autosigninable_ready?, false
+  end
   
 end
