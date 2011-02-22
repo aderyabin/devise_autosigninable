@@ -50,9 +50,39 @@ By default Devise Autosigninable uses `'/:object_id/autosignin/:autosignin_token
 
 Also route understand optional parameter "return_to" to redirect after sign in.
 
+Rake tasks
+-----------
+Devise Autosigninable has two rake task which help to reset all autosignin_tokens
+
+    rake devise:autosigninable:reset[User]
+
+and generate all missed autosigninable tokens
+
+    rake devise:autosigninable:ensure[User]
+
+
+Features
+-----------
+
+Devise Autosigninable has functionality of exipering token after sign in. To use it add this to the end of devise determing in model:
+
+    :autosignin_expire => true
+
+For example:
+
+    devise :authenticatable, :confirmable, :recoverable, :rememberable, :trackable, :validatable, :autosigninable, :autosignin_expire => true
+
+
+
+Devise Autosigninable add method `autosigninable?` which detect need of generation autosignin token for record. It may be useful you don't want add
+autosignin functionality for some records.
+
+
+
+
 Tests
 -----------
-All test cases are stored in test/rails_app/tests
+All test cases are stored in test/rails2/tests for Rails 2.3.x and in test/rails3/test for Rails 3
 
 
 [1]:http://github.com/plataformatec/devise
