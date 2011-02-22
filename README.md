@@ -70,7 +70,7 @@ Devise Autosigninable has functionality of exipering token after sign in. To use
 
 For example:
 
-    devise :authenticatable, :confirmable, :recoverable, :rememberable, :trackable, :validatable, :autosigninable, :autosignin_expire => true
+    devise :authenticatable, :confirmable, :recoverable, :validatable, :autosigninable, :autosignin_expire => true
 
 
 
