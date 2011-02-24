@@ -96,12 +96,17 @@ module Devise
         end
 
         # generation random autosignin token
-        def autosignin_token(field = 'autosignin_token')
+        #TODO: to write tests
+        def autosignin_token(uniq = false, field = 'autosignin_token')
+          if uniq
           RETRY_COUNT.times do
             token = Digest::SHA1.hexdigest("--#{Time.now.utc}--#{rand}--")
             return token unless exists? field => token
           end
           raise Exception.new("Couldn't generate #{self.class}:#{field} for #{RETRY_COUNT} times")
+          else
+            Digest::SHA1.hexdigest("--#{Time.now.utc}--#{rand}--")
+          end
         end
 
         # Authenticate a user based on authentication token.
