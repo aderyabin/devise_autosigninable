@@ -1,0 +1,3 @@
+[submodule "test/rails2/vendor/plugins/devise_autosigninable"]
+	path = test/rails2/vendor/plugins/devise_autosigninable
+	url = git@github.com:aderyabin/devise_autosigninable.git
