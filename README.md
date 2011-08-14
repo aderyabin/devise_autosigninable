@@ -9,23 +9,24 @@ Devise Autosigninable signs in a user based on an autosignin token (random hash 
 If signed in user try to sign in with Devise Autosigninable he will be sign out firstly and than go to sign in.
 So if token is incorrect user will be signed out anyway.
 
-It requires  Devise 1.0 and ONLY works with Rails 2.
+Devise Autosigninable compatibile with Rails 2 and Rails 3
 
 
 Installation
 -----------
 
+
+* Add devise_autosigninable to Gemfile:
+
+    `gem 'devise_autosigininable', '1.0.0'`
+
 * Add :autosigninable to your Devise modules in model, for example:
 
     `devise :registerable, :authenticatable, :recoverable, :rememberable, :trackable, :validatable, :lockable, :autosigninable`
 
-* Add devise_autosigninable plugin to your Rails app:
-
-    `script/plugin install https://github.com/aderyabin/devise_autosigninable`
-
 * Generate migration for autosigninable. It creates neccessary fields and fill already existed records.
 
-    `script/generate devise_autosigninable MODEL`
+    `rails g devise_autosigninable MODEL`
 
 Replace MODEL by the class name you want to add devise, like User, Admin, etc
 
@@ -76,13 +77,5 @@ For example:
 
 Devise Autosigninable add method `autosigninable?` which detect need of generation autosignin token for record. It may be useful you don't want add
 autosignin functionality for some records.
-
-
-
-
-Tests
------------
-All test cases are stored in test/rails2/tests for Rails 2.3.x and in test/rails3/test for Rails 3
-
 
 [1]:http://github.com/plataformatec/devise
