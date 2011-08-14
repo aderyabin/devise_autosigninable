@@ -5,7 +5,7 @@ class Devise::AutosigninController < ApplicationController
   
   def create
     sign_out(resource_name)
-    if resource = authenticate(resource_name)
+    if resource = warden.authenticate!(:scope => resource_name)
       set_flash_message :notice, :signed_in
     else
       set_now_flash_message :alert, (warden.message || :invalid)

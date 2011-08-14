@@ -19,7 +19,7 @@ module Devise
       protected
 
       def valid_controller?
-        'autosignin' == params[:controller]
+        'devise/autosignin' == params[:controller]
       end
 
       def valid_params?

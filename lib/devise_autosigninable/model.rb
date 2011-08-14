@@ -76,34 +76,27 @@ module Devise
         # Generate autosignin tokens unless already exists and save the records.
         def ensure_all_autosignin_tokens(batch_size=500)
           user_count = count( :conditions=>{:autosignin_token => nil})
-          i = 1
           find_in_batches(:batch_size =>batch_size, :conditions=>{:autosignin_token => nil}) do |group|
             group.each { |user| user.ensure_autosignin_token! }
-#            puts "Updated users: #{batch_size*i} from #{user_count}"
-            i += 1
           end
         end
 
         # Generate autosignin tokens and save the records.
         def reset_all_autosignin_tokens(batch_size=500)
           user_count = count
-          i = 1
           find_in_batches(:batch_size =>batch_size) do |group|
             group.each { |user| user.reset_autosignin_token! }
-            puts "Reseted users: #{batch_size*i} from #{user_count}"
-            i += 1
           end
         end
 
         # generation random autosignin token
-        #TODO: to write tests
         def autosignin_token(uniq = false, field = 'autosignin_token')
           if uniq
-          RETRY_COUNT.times do
-            token = Digest::SHA1.hexdigest("--#{Time.now.utc}--#{rand}--")
-            return token unless exists? field => token
-          end
-          raise Exception.new("Couldn't generate #{self.class}:#{field} for #{RETRY_COUNT} times")
+            RETRY_COUNT.times do
+              token = Digest::SHA1.hexdigest("--#{Time.now.utc}--#{rand}--")
+              return token unless exists? field => token
+            end
+            raise Exception.new("Couldn't generate #{self.class}:#{field} for #{RETRY_COUNT} times")
           else
             Digest::SHA1.hexdigest("--#{Time.now.utc}--#{rand}--")
           end
