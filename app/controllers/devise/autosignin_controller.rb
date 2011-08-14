@@ -1,4 +1,5 @@
-class AutosigninController < ApplicationController
+class Devise::AutosigninController < ApplicationController
+  
   include Devise::Controllers::InternalHelpers
   include Devise::Autosigninable::Helpers
   

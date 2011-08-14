@@ -1,4 +1,5 @@
 # DeviseAutosigninable
+require 'rails'
 require 'devise'
 require 'devise_autosigninable/routes'
 require 'devise_autosigninable/schema'
