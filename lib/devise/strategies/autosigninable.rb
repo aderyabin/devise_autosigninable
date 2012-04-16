@@ -15,7 +15,9 @@ module Devise
       end
 
       def authenticate!
-        resource = mapping.to.find_for_token_authentication(authentication_hash)
+        hash = authentication_hash.dup
+        hash[:id] = hash.delete("#{mapping.name.to_s}_id".to_sym)
+        resource = mapping.to.find_for_token_authentication(hash)
 
         if validate(resource)
           resource.after_token_authentication
@@ -37,9 +39,14 @@ module Devise
         false
       end
 
+      def http_auth_hash
+        Hash[*authentication_keys.zip(decode_credentials).flatten]
+      end
+
+
       # Try both scoped and non scoped keys.
       def params_auth_hash
-        if params[scope].kind_of?(Hash) && params[scope].has_key?(authentication_keys.first)
+        if params[scope].kind_of?(Hash) && params[scope].has_key?(authentication_keys[1])
           params[scope]
         else
           params
@@ -48,7 +55,7 @@ module Devise
 
       # Overwrite authentication keys to use token_authentication_key.
       def authentication_keys
-        @authentication_keys ||= [mapping.to.token_authentication_key]
+        @authentication_keys ||= ["#{mapping.name.to_s}_id".to_sym, mapping.to.token_authentication_key]
       end
     end
   end

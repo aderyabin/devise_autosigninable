@@ -1,8 +1,8 @@
-require 'devise/strategies/devise_autosigninable'
+require 'devise/strategies/autosigninable'
 
 module Devise
   module Models
-    # The TokenAuthenticatable module is responsible for generating an authentication token and
+    # The Autosigninable module is responsible for generating an authentication token and
     # validating the authenticity of the same while signing in.
     #
     # This module only provides a few helpers to help you manage the token, but it is up to you
@@ -20,7 +20,7 @@ module Devise
     #
     # == Options
     #
-    # TokenAuthenticatable adds the following options to devise_for:
+    # Autosigninable adds the following options to devise_for:
     #
     #   * +token_authentication_key+: Defines name of the authentication token params key. E.g. /users/sign_in?some_key=...
     #
@@ -62,7 +62,7 @@ module Devise
 
       module ClassMethods
         def find_for_token_authentication(conditions)
-          find_for_authentication(:authentication_token => conditions[token_authentication_key])
+          find_for_authentication(:authentication_token => conditions[token_authentication_key], :id => conditions[:id])
         end
 
         # Generate a token checking if one does not already exist in the database.
@@ -70,7 +70,7 @@ module Devise
           generate_token(:authentication_token)
         end
 
-        ::Devise::Models.config(self, :token_authentication_key, :expire_auth_token_on_timeout)
+        Devise::Models.config(self, :token_authentication_key, :expire_auth_token_on_timeout)
       end
     end
   end
