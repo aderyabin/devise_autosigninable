@@ -1,9 +1,7 @@
 source "http://rubygems.org"
 
-gem 'devise'
+gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
 gem "rails", "~> 3.2.0"
-gem "omniauth", "~> 1.0.0"
-gem "omniauth-oauth2", "~> 1.0.0"
 gem "rdoc"
 
 group :test do

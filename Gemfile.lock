@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/plataformatec/devise.git
+  revision: 3752981cfa6882c599e6f4be590fd9ae83c3f37a
+  specs:
+    devise (2.1.0.rc)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.0.7)
+      railties (~> 3.1)
+      warden (~> 1.1.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -35,11 +45,6 @@ GEM
     bson_ext (1.3.1)
     builder (3.0.0)
     columnize (0.3.6)
-    devise (2.0.4)
-      bcrypt-ruby (~> 3.0)
-      orm_adapter (~> 0.0.3)
-      railties (~> 3.1)
-      warden (~> 1.1.1)
     erubis (2.7.0)
     faraday (0.7.6)
       addressable (~> 2.2)
@@ -149,14 +154,12 @@ DEPENDENCIES
   activerecord-jdbc-adapter
   activerecord-jdbcsqlite3-adapter
   bson_ext (~> 1.3.0)
-  devise
+  devise!
   jruby-openssl
   mocha
   mongo (~> 1.3.0)
   mongoid (~> 2.0)
-  omniauth (~> 1.0.0)
   omniauth-facebook
-  omniauth-oauth2 (~> 1.0.0)
   omniauth-openid (~> 1.0.1)
   rails (~> 3.2.0)
   rdoc
