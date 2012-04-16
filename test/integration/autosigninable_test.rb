@@ -4,10 +4,9 @@ class AutosigninationTest < ActionController::IntegrationTest
 
   test 'authenticate with valid authentication token key and value through params' do
     swap Devise, :token_authentication_key => :secret_token do
-      sign_in_as_new_user_with_token
-
+      user = sign_in_as_new_user_with_token
       assert_response :success
-      assert_current_url "/users?secret_token=#{VALID_AUTHENTICATION_TOKEN}"
+      assert_current_url "/users?secret_token=#{VALID_AUTHENTICATION_TOKEN}&user_id=#{user.id}"
       assert_contain 'Welcome'
       assert warden.authenticated?(:user)
     end
@@ -16,7 +15,7 @@ class AutosigninationTest < ActionController::IntegrationTest
   test 'authenticate with valid authentication token key and value through params, when params with the same key as scope exist' do
     swap Devise, :token_authentication_key => :secret_token do
       user = create_user_with_authentication_token
-      post exhibit_user_path(user), Devise.token_authentication_key => user.authentication_token, :user => { :some => "data" }
+      post exhibit_user_path(user), Devise.token_authentication_key => user.authentication_token, :user_id => user.id, :user => { :some => "data" }
 
       assert_response :success
       assert_contain 'User is authenticated'
@@ -138,10 +137,10 @@ class AutosigninationTest < ActionController::IntegrationTest
       options[:auth_token]     ||= user.authentication_token
 
       if options[:http_auth]
-        header = "Basic #{Base64.encode64("#{VALID_AUTHENTICATION_TOKEN}:X")}"
+        header = "Basic #{Base64.encode64("#{user.id}:#{VALID_AUTHENTICATION_TOKEN}")}"
         get users_path(:format => :xml), {}, "HTTP_AUTHORIZATION" => header
       else
-        visit users_path(options[:auth_token_key].to_sym => options[:auth_token])
+        visit users_path(options[:auth_token_key].to_sym => options[:auth_token], :user_id => user.id)
       end
 
       user

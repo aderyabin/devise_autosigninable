@@ -13,6 +13,7 @@ rescue LoadError
 end
 
 require "devise"
+require 'devise_autosigninable'
 
 module RailsApp
   class Application < Rails::Application

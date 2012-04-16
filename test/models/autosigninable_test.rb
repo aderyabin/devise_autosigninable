@@ -22,7 +22,7 @@ class AutosigninableTest < ActiveSupport::TestCase
     user = create_user
     user.ensure_authentication_token!
     user.confirm!
-    authenticated_user = User.find_for_token_authentication(:auth_token => user.authentication_token)
+    authenticated_user = User.find_for_token_authentication(:auth_token => user.authentication_token, :id => user.id)
     assert_equal authenticated_user, user
   end
 
