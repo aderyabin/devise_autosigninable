@@ -1,6 +1,8 @@
+require "devise_autosigninable/version"
+
 Gem::Specification.new do |s|
   s.name = %q{devise_autosigninable}
-  s.version = '1.0.1'
+  s.version = DeviseAutosigninable::VERSION
   s.platform = Gem::Platform::RUBY
   s.authors = ["Andrey Deryabin"]
   s.date = Date.today
