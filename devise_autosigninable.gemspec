@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.date = Date.today
   s.description = ["It adds support to be logged in by uniq link."]
   s.summary = ["It adds support to be logged in by uniq link. It useful for mailing and access from admin panel."]
-  s.email = ["ad@evl.ms"]
-  s.homepage =["http://github.com/evilmartians/devise_autosigninable"]
+  s.email = ["deriabin@gmail.com"]
+  s.homepage =["http://github.com/aderyabin/devise_autosigninable"]
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
