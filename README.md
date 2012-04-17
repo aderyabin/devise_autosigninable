@@ -9,7 +9,7 @@ Devise Autosigninable signs in a user based on an autosignin token (random hash 
 If signed in user try to sign in with Devise Autosigninable he will be sign out firstly and than go to sign in.
 So if token is incorrect user will be signed out anyway.
 
-Devise Autosigninable compatibile with Rails 2 and Rails 3
+Devise Autosigninable compatibile Rails 3
 
 
 Installation
